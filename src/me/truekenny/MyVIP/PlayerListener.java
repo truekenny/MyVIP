@@ -1,5 +1,8 @@
 package me.truekenny.MyVIP;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -40,11 +43,19 @@ public class PlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerLogin(PlayerLoginEvent event) {
-        if (event.getPlayer().hasPermission("myvip.vip")) {
-            plugin.log.info("Allow login: " + event.getPlayer().getDisplayName());
+        final Player player = event.getPlayer();
+
+        if (plugin.players.vip(player.getDisplayName())) {
+            plugin.log.info("Allow login: " + player.getDisplayName());
             event.allow();
+            Bukkit.getScheduler().runTask(plugin, new Runnable() {
+                public void run() {
+                    player.sendMessage(ChatColor.GREEN + "Vip <= " + plugin.players.getDate(player.getDisplayName()));
+                }
+            });
+
         } else {
-            plugin.log.info("Default login: " + event.getPlayer().getDisplayName());
+            plugin.log.info("Default login: " + player.getDisplayName());
         }
     }
 }

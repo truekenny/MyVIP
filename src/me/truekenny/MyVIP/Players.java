@@ -46,6 +46,17 @@ public class Players {
         return true;
     }
 
+    public String getDate(String nick) {
+        String[] data = players.get(nick.toLowerCase());
+
+        if (data == null) {
+
+            return "";
+        }
+
+        return data[0];
+    }
+
     public void add(String nick, int days) {
         Date date = DateUtils.addDays(new Date(), days);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
