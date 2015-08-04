@@ -1,0 +1,7 @@
+name: MyVIP
+main: me.truekenny.MyVIP.MyVIP
+version: 1.0.0
+commands:
+  vip:
+    description: VIP.
+    usage: "Usage: '/vip'"
