@@ -40,7 +40,7 @@ public class MyVIP extends JavaPlugin implements iMyVIP {
     }
 
     public boolean isVip(String nick) {
-        return true;
+        return players.vip(nick);
     }
 
     public boolean isVip(Player player) {
