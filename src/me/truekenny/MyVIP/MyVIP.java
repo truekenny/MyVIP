@@ -1,12 +1,13 @@
 package me.truekenny.MyVIP;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
-public class MyVIP extends JavaPlugin {
+public class MyVIP extends JavaPlugin implements iMyVIP {
     public Logger log = Logger.getLogger("Minecraft");
     public PlayerListener playerListener;
     public FileConfiguration config;
@@ -23,9 +24,7 @@ public class MyVIP extends JavaPlugin {
         playerListener = new PlayerListener(this);
         pm.registerEvents(playerListener, this);
 
-
         getCommand("vip").setExecutor(new VipCommand(this));
-
     }
 
     public void onDisable() {
@@ -38,5 +37,13 @@ public class MyVIP extends JavaPlugin {
 
         config.options().copyDefaults(true);
         saveConfig();
+    }
+
+    public boolean isVip(String nick) {
+        return true;
+    }
+
+    public boolean isVip(Player player) {
+        return isVip(player.getDisplayName());
     }
 }

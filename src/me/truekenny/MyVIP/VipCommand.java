@@ -43,7 +43,7 @@ public class VipCommand implements CommandExecutor {
 
         if (split.length >= 2) {
             String nick = split[1];
-            int days = (split.length >= 3) ? Integer.parseInt(split[2]) : 30;
+            int days = (split.length >= 3) ? Integer.parseInt(split[2]) : plugin.config.getInt("default.days");
 
             if (split[0].equals("add")) {
                 plugin.players.add(nick, days);
@@ -51,6 +51,10 @@ public class VipCommand implements CommandExecutor {
             } else if (split[0].equals("delete") || split[0].equals("del") || split[0].equals("remove") || split[0].equals("rem")) {
                 plugin.players.delete(nick);
             }
+        }
+
+        if (split.length == 1 && split[0].equals("list")) {
+            plugin.players.list(sender);
         }
 
         if (split.length == 1 && split[0].equals("test")) {

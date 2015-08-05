@@ -1,6 +1,7 @@
 package me.truekenny.MyVIP;
 
 import org.apache.commons.lang.time.DateUtils;
+import org.bukkit.command.CommandSender;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -73,6 +74,19 @@ public class Players {
         players.remove(nick);
 
         save();
+    }
+
+    public void list(CommandSender sender) {
+        Enumeration<String> e = players.keys();
+
+        int i = 0;
+        while (e.hasMoreElements()) {
+            String nick = e.nextElement();
+            String[] data = players.get(nick);
+
+            i++;
+            sender.sendMessage(i + ". " + nick + " " + data[0]);
+        }
     }
 
     private boolean load() {
