@@ -43,6 +43,14 @@ public class PlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerLogin(PlayerLoginEvent event) {
+        for (Player player : plugin.getOnlinePlayers()) {
+            if(player.getDisplayName().equalsIgnoreCase(event.getPlayer().getDisplayName())) {
+                event.disallow(PlayerLoginEvent.Result.KICK_OTHER, "Игрок в сети. Попробуй подождать.");
+
+                return;
+            }
+        }
+
         final Player player = event.getPlayer();
 
         if (plugin.players.vip(player.getDisplayName())) {

@@ -1,6 +1,6 @@
 name: MyVIP
 main: me.truekenny.MyVIP.MyVIP
-version: 1.0.2
+version: 1.0.3
 commands:
   vip:
     description: VIP.
